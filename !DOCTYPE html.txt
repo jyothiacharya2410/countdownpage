@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to January 20th, 2025</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-top: 20px;
+        }
+        #countdown {
+            font-size: 2rem;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Finally Home</h1>
+    <div id="countdown">Loading countdown...</div>
+
+    <script>
+        function startCountdown() {
+            const targetDate = new Date("January 20, 2025 00:00:00").getTime();
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const timeLeft = targetDate - now;
+
+                if (timeLeft <= 0) {
+                    document.getElementById("countdown").innerHTML = "The time has arrived!";
+                    clearInterval(interval);
+                    return;
+                }
+
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML = 
+                    `${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds`;
+            }
+
+            const interval = setInterval(updateCountdown, 1000);
+        }
+
+        startCountdown();
+    </script>
+</body>
+</html>
+
